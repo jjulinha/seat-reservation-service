@@ -6,7 +6,7 @@
 -- Variavel local com o ID do evento de teste
 -- Usamos um UUID fixo para facilitar o teste manual.
 -- Em producao real, este seed nao existiria.
-SET @event_id_demo = UNHEX('01979ABCDEF07000800000000000FACE');
+SET @event_id_demo = UNHEX('01979ABCDEF070008000000000000ACE');
 
 -- Inventario do evento de demo: 10 assentos
 INSERT INTO seat (seat_id, event_id, seat_identifier, status, price) VALUES
