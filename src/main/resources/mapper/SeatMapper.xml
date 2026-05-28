@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.unisul.seatreservation.mapper.SeatMapper">
+
+    <!-- Lista assentos disponiveis de um evento -->
+    <select id="findAvailableByEvent" resultType="com.unisul.seatreservation.domain.Seat">
+        SELECT seat_id, event_id, seat_identifier, status, price, locked_until, locked_by_order
+        FROM seat
+        WHERE event_id = #{eventId}
+        AND status = 'AVAILABLE'
+        ORDER BY seat_identifier
+    </select>
+
+    <!-- Lista todos os assentos de um evento -->
+    <select id="findAllByEvent" resultType="com.unisul.seatreservation.domain.Seat">
+        SELECT seat_id, event_id, seat_identifier, status, price, locked_until, locked_by_order
+        FROM seat
+        WHERE event_id = #{eventId}
+        ORDER BY seat_identifier
+    </select>
+
+    <!-- Busca um assento por id -->
+    <select id="findById" resultType="com.unisul.seatreservation.domain.Seat">
+        SELECT seat_id, event_id, seat_identifier, status, price, locked_until, locked_by_order
+        FROM seat
+        WHERE seat_id = #{seatId}
+    </select>
+
+    <!-- Insere um assento -->
+    <insert id="insert">
+        INSERT INTO seat (seat_id, event_id, seat_identifier, status, price, locked_until, locked_by_order)
+        VALUES (#{seatId}, #{eventId}, #{seatIdentifier}, #{status}, #{price}, #{lockedUntil}, #{lockedByOrder})
+    </insert>
+
+</mapper>
